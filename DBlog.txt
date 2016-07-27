@@ -1,0 +1,151 @@
+Wed Jul 27 15:49:00 CST 2016: 成功注册JDBC驱动程序oracle.jdbc.driver.OracleDriver
+Wed Jul 27 15:49:00 CST 2016: 成功创建连接池hisIOMdb_lx
+Wed Jul 27 15:49:00 CST 2016: 成功创建连接池appdb
+Wed Jul 27 15:49:00 CST 2016: 成功创建连接池hisIOMdb
+Wed Jul 27 15:49:00 CST 2016: 成功创建连接池middledb
+Wed Jul 27 15:49:00 CST 2016: 成功创建连接池hisIOMdb_qc
+Wed Jul 27 15:49:01 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:02 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:03 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:03 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:03 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:03 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:08 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:08 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:08 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:09 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:09 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:09 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:09 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:09 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:10 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:10 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:11 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:11 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:11 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:11 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:12 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:12 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:12 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:12 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:14 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:15 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:15 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:16 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:16 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:16 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:16 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:16 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:17 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:17 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:17 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:18 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:18 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:18 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:18 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:19 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:19 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:19 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:20 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:20 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:20 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:20 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:21 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:21 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:22 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:22 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:23 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:33 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:33 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:34 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:49:34 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:49:35 CST 2016: 连接池middledb创建一个新的连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:11 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:12 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 无法关闭连接池middledb中的连接
+java.sql.SQLException: Io 异常: Software caused connection abort: socket write error
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:112)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:146)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:255)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:481)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:1203)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager$DBConnectionPool.release(DBConnectionManager.java:324)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager.release(DBConnectionManager.java:101)
+	at com.cpinfo.his.web.etlMangager.db.DBOperator.freeCon(DBOperator.java:437)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans.TransData(TimmerTrans.java:153)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans.dataTrans(TimmerTrans.java:107)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans$3.run(TimmerTrans.java:573)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 无法关闭连接池middledb中的连接
+java.sql.SQLException: Io 异常: Software caused connection abort: socket write error
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:112)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:146)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:255)
+	at oracle.jdbc.driver.T4CConnection.logoff(T4CConnection.java:481)
+	at oracle.jdbc.driver.PhysicalConnection.close(PhysicalConnection.java:1203)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager$DBConnectionPool.release(DBConnectionManager.java:324)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager.release(DBConnectionManager.java:101)
+	at com.cpinfo.his.web.etlMangager.db.DBOperator.freeCon(DBOperator.java:437)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans.TransData(TimmerTrans.java:153)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans.dataTrans(TimmerTrans.java:107)
+	at com.cpinfo.his.web.etlMangager.TimmerTrans$3.run(TimmerTrans.java:573)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 关闭连接池middledb中的一个连接
+Wed Jul 27 15:50:13 CST 2016: 撤销JDBC驱动程序 oracle.jdbc.driver.OracleDriver的注册
+Wed Jul 27 15:50:14 CST 2016: 连接池appdb创建一个新的连接
+Wed Jul 27 15:54:08 CST 2016: 关闭连接池appdb中的一个连接
+Wed Jul 27 15:54:08 CST 2016: 撤销JDBC驱动程序 oracle.jdbc.driver.OracleDriver的注册
+Wed Jul 27 15:54:08 CST 2016: 连接池appdb创建一个新的连接

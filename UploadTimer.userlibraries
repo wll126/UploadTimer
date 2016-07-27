@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="lib">
+    <archive path="D:/work/workspace/UploadTimer/src/lib/ojdbc14.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/kettle-db.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/kettle-core.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/kettle-engine.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/kettle-dbdialog.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-dbcp-1.4.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-io-2.0.1.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-beanutils.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-pool-1.5.4.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-collections.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-logging-1.1.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/kettle-vfs-20100924.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/commons-fileupload-1.2.2.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/org.apache.commons_1.0.0.jar" />
+    <archive path="D:/work/workspace/UploadTimer/src/lib/mysql-connector-java-5.0.8-bin.jar" />
+  </library>
+  <library name="jsp-api">
+    <archive path="D:/work/common_jar/jsp-api.jar" />
+    <archive path="D:/work/common_jar/servlet-api.jar" />
+  </library>
+</eclipse-userlibraries>
+

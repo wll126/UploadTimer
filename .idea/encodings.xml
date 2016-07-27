@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/ETLTimerForEHR.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/TimmerTrans.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/TransDataTest.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/db/DBConnectionManager.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/db/DBOperator.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/model/FiledMapper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/utils/DbUtils.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/utils/ListUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/utils/StrUtil.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/utils/UUIDGenerator.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../../workspaces/bz/src/com/cpinfo/his/web/decisionAnalysis/DecisionController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../../workspaces/bz/src/com/cpinfo/his/web/login/LoginController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../../workspaces/bz/src/com/cpinfo/his/web/login/PlatformController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../../workspaces/bz/src/com/cpinfo/his/web/registeranalysis/DrugMonitoring.java" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
+
