@@ -78,7 +78,7 @@ public class TransDataTest {
     public void TransData(int rownum){
         DBOperator db= null;
         DBOperator mdb=null;
-//         rownum=20;
+         rownum=20;
         try {
             db = new DBOperator();
             mdb = new DBOperator("middledb");
@@ -336,7 +336,7 @@ public class TransDataTest {
         date.set(date.get(Calendar.YEAR), date.get(Calendar.MONTH), date.get(Calendar.DATE), hour, minute, 0);
         //»’÷æ
         String logFile = dbProps.getProperty("logfile", "DBConnectionManager.log");
-        logFile= date.get(Calendar.YEAR)+""+ (date.get(Calendar.MONTH)+1)+ date.get(Calendar.DATE)+logFile;
+        logFile= date.get(Calendar.YEAR)+"Y"+ (date.get(Calendar.MONTH)+1)+"M"+ date.get(Calendar.DATE)+"D"+logFile;
         try {
             log = new PrintWriter(new FileWriter(logFile, true), true);
              dataCount=  Integer.parseInt(dbProps.getProperty("data_count","1"));
@@ -372,6 +372,7 @@ public class TransDataTest {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+
         }
     }
 }
