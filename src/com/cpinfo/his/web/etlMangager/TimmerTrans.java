@@ -233,7 +233,6 @@ public class TimmerTrans {
                 Object[] obj=new Object[tableInfoList.size()];        //存储insert所需参数值的数组
                 Object[] pkobj=new Object[pksize];        //存储主键值的数组
                 int k=0;int pkct=0;String isfalse="";
-                Object[] eobj=new Object[tableInfoList.size()] ;//存放错误数据字段信息的数值
                 /**遍历该行每一列*/
                 for(k=0;k<tableInfoList.size();k++){
                     Map colMap=tableInfoList.get(k);
@@ -251,7 +250,6 @@ public class TimmerTrans {
                     if(null!=dictnekey)dictnekey=dictnekey.trim();
                     String columispk=(String)colMap.get("columispk");
                     if(null!=columispk)columispk=columispk.trim().toUpperCase();
-                    eobj[k]=tmap.get(columename);      //准备数据
                     if("Y".equals(columispk)){        //判断是否主键
                         Object pkvalue=tmap.get(columename);
                         if(null!=pkvalue)pkvalue=pkvalue.toString().trim();
@@ -395,6 +393,13 @@ public class TimmerTrans {
                     }
                 }else{
                //下面是失败的数据处理，先把错误的数据先拿到中间库，然后。。你懂得
+                    Object[] eobj=new Object[tableInfoList.size()] ;//存放错误数据字段信息的数值
+                    for(k=0;k<tableInfoList.size();k++) {
+                        Map colMap = tableInfoList.get(k);
+                        String columename = (String) colMap.get("columename");
+                        if (null != columename) columename = columename.trim();
+                        eobj[k] = tmap.get(columename);      //准备数据
+                    }
                     //判断主键是否为空
                     if(null!=pkobj[0]&&!"".equals(pkobj[0])){
                         Map map=(Map)edb.findOne(seleSql,pkobj);            //看下是否存在，是则执行更新，否则执行新增操作
