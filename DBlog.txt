@@ -448,3 +448,31 @@ Wed Jul 27 16:43:40 CST 2016: 连接池appdb创建一个新的连接
 Wed Jul 27 17:08:26 CST 2016: 关闭连接池appdb中的一个连接
 Wed Jul 27 17:08:26 CST 2016: 撤销JDBC驱动程序 oracle.jdbc.driver.OracleDriver的注册
 Wed Jul 27 17:08:28 CST 2016: 连接池appdb创建一个新的连接
+Mon Aug 08 15:48:00 CST 2016: 成功注册JDBC驱动程序oracle.jdbc.driver.OracleDriver
+Mon Aug 08 15:48:00 CST 2016: 成功创建连接池hisIOMdb_lx
+Mon Aug 08 15:48:00 CST 2016: 成功创建连接池appdb
+Mon Aug 08 15:48:00 CST 2016: 成功创建连接池hisIOMdb
+Mon Aug 08 15:48:00 CST 2016: 成功创建连接池middledb
+Mon Aug 08 15:48:00 CST 2016: 成功创建连接池hisIOMdb_qc
+Mon Aug 08 15:48:02 CST 2016: 无法创建下列URL的连接: jdbc:oracle:thin:@127.0.0.1:1521:orcl
+java.sql.SQLException: Io 异常: The Network Adapter could not establish the connection
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:112)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:146)
+	at oracle.jdbc.driver.DatabaseError.throwSqlException(DatabaseError.java:255)
+	at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:387)
+	at oracle.jdbc.driver.PhysicalConnection.<init>(PhysicalConnection.java:439)
+	at oracle.jdbc.driver.T4CConnection.<init>(T4CConnection.java:165)
+	at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:35)
+	at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:801)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at java.sql.DriverManager.getConnection(Unknown Source)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager$DBConnectionPool.newConnection(DBConnectionManager.java:344)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager$DBConnectionPool.getConnection(DBConnectionManager.java:286)
+	at com.cpinfo.his.web.etlMangager.db.DBConnectionManager.getConnection(DBConnectionManager.java:68)
+	at com.cpinfo.his.web.etlMangager.db.DBOperator.initialize(DBOperator.java:42)
+	at com.cpinfo.his.web.etlMangager.db.DBOperator.<init>(DBOperator.java:31)
+	at com.cpinfo.his.web.etlMangager.TransMiddleData.TransData(TransMiddleData.java:117)
+	at com.cpinfo.his.web.etlMangager.TransMiddleData.dataTrans(TransMiddleData.java:109)
+	at com.cpinfo.his.web.etlMangager.TransMiddleData$3.run(TransMiddleData.java:287)
+	at java.util.TimerThread.mainLoop(Unknown Source)
+	at java.util.TimerThread.run(Unknown Source)

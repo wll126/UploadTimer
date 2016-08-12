@@ -1,6 +1,8 @@
 package com.cpinfo.his.web.etlMangager;
 import com.cpinfo.his.web.etlMangager.db.DBOperator;
 import com.cpinfo.his.web.etlMangager.utils.UUIDGenerator;
+import org.junit.Test;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -105,21 +107,22 @@ public class TimmerTrans {
         area.append("\n开始第一部分"+sdf.format(new Date())+"\n");
         upflag=false;//进入上传状态
         TransData();        //  提取基础数据
-		System.out.println("personDataBegin"+sdf.format(new Date()));
-		area.append("第二部分"+sdf.format(new Date())+"\n");
-		personData();
-		System.out.println("empiUpdateBegin"+sdf.format(new Date()));
-		area.append("电子病历"+sdf.format(new Date())+"\n");
-		empiUpdate();
-		System.out.println("MVIEWFreshBegin"+sdf.format(new Date()));
-		area.append("更新视图"+sdf.format(new Date())+"\n");
-		MVFresh();
-		area.append("上传完了");
+        System.out.println("上传错误数据信息开始"+sdf.format(new Date()));
+        upErrorData();
+//		System.out.println("personDataBegin"+sdf.format(new Date()));
+//		area.append("第二部分"+sdf.format(new Date())+"\n");
+//		personData();
+//		System.out.println("empiUpdateBegin"+sdf.format(new Date()));
+//		area.append("电子病历"+sdf.format(new Date())+"\n");
+//		empiUpdate();
+//		System.out.println("MVIEWFreshBegin"+sdf.format(new Date()));
+//		area.append("更新视图"+sdf.format(new Date())+"\n");
+//		MVFresh();
+		area.append("上传完了"+sdf.format(new Date()));
         upflag=true;//将上传标识置回
 	}
     public void TransData(){
 	 	DBOperator mdb= null;
-		int rownum=200;
 		try {
 		    mdb = new DBOperator("middledb");
 			String sql="select u.tableename,u.tablename,u.tableid from uploadtable u where u.tableename is not null    and u.isshow='Y'  order by u.no ";
@@ -164,9 +167,11 @@ public class TimmerTrans {
     private  void checkData(Map tableListMap,int rownum)  {
         DBOperator db=null   ;
         DBOperator mdb=null ;
+        DBOperator edb=null;
       try{
           db =new DBOperator() ;
           mdb= new DBOperator("middledb") ;
+          edb=new DBOperator("errordb");
         String tablename=tableListMap.get("tablename").toString();
         String tableid=tableListMap.get("tableid").toString();
         String tableename=tableListMap.get("tableename").toString();
@@ -228,6 +233,7 @@ public class TimmerTrans {
                 Object[] obj=new Object[tableInfoList.size()];        //存储insert所需参数值的数组
                 Object[] pkobj=new Object[pksize];        //存储主键值的数组
                 int k=0;int pkct=0;String isfalse="";
+                Object[] eobj=new Object[tableInfoList.size()] ;//存放错误数据字段信息的数值
                 /**遍历该行每一列*/
                 for(k=0;k<tableInfoList.size();k++){
                     Map colMap=tableInfoList.get(k);
@@ -245,6 +251,7 @@ public class TimmerTrans {
                     if(null!=dictnekey)dictnekey=dictnekey.trim();
                     String columispk=(String)colMap.get("columispk");
                     if(null!=columispk)columispk=columispk.trim().toUpperCase();
+                    eobj[k]=tmap.get(columename);      //准备数据
                     if("Y".equals(columispk)){        //判断是否主键
                         Object pkvalue=tmap.get(columename);
                         if(null!=pkvalue)pkvalue=pkvalue.toString().trim();
@@ -351,22 +358,28 @@ public class TimmerTrans {
                 int errorSize= errobjs.size()   ;
                 area.append(tablename+"  反馈信息有"+errorSize+"条\n");
                 if(k>=tableInfoList.size()){
-                    Map map=(Map)db.findOne(seleSql,pkobj);            //看下是否存在，是则执行更新，否则执行新增操作
-                    if(!map.get("ct1").toString().equals("0")){
-                        int colnum=tableInfoList.size();
-                        Object[] upobj=new Object[colnum+pkobj.length];
-                        for(int m=0;m<colnum+pkobj.length;m++){
-                            if(m<colnum){
-                                upobj[m]=obj[m];
-                            }else{
-                                upobj[m]=pkobj[m-colnum];
+                    //判断主键是否为空
+                    if(null!=pkobj[0]&&!"".equals(pkobj[0])){
+                        Map map=(Map)db.findOne(seleSql,pkobj);            //看下是否存在，是则执行更新，否则执行新增操作
+                        if(!map.get("ct1").toString().equals("0")){
+                            int colnum=tableInfoList.size();
+                            Object[] upobj=new Object[colnum+pkobj.length];
+                            for(int m=0;m<colnum+pkobj.length;m++){
+                                if(m<colnum){
+                                    upobj[m]=obj[m];
+                                }else{
+                                    upobj[m]=pkobj[m-colnum];
+                                }
                             }
+                            area.append(tablename+"  更新\n");
+                            db.excute(updateSql, upobj);
+                        }else{
+                            area.append(tablename+"  新增\n");
+                            db.excute(insertSql,obj);
                         }
-                        area.append(tablename+"  更新\n");
-                        db.excute(updateSql, upobj);
                     }else{
-                        area.append(tablename+"  新增\n");
-                        db.excute(insertSql,obj);
+                        area.append(tablename+" 主键为空也要的数据 新增\n");
+                        db.excute(insertSql,obj);               //主键为空的情况下无脑insert
                     }
                     if("".equals(isfalse)){
                         mdb.excute(medUpSql,new Object[]{"1",tmap.get("dataid")});
@@ -380,6 +393,23 @@ public class TimmerTrans {
                         }
                         db.excute(errSql,new Object[]{uuid,tmap.get("jgdm"),tmap.get("yqjgdm"),tableid,tablename,tmap.get("createdate"),tmap.get("dataid"),errid,"身份证号(sfzh)"+isfalse,tmap.get(dodate)});
                     }
+                }else{
+               //下面是失败的数据处理，先把错误的数据先拿到中间库，然后。。你懂得
+                    //判断主键是否为空
+                    if(null!=pkobj[0]&&!"".equals(pkobj[0])){
+                        Map map=(Map)edb.findOne(seleSql,pkobj);            //看下是否存在，是则执行更新，否则执行新增操作
+                        if(!map.get("ct1").toString().equals("0")){
+                              //TODO  更新暂时不玩，有数据还更新做什么？
+                        }else{
+                            area.append(tablename+"  新增\n");
+                            edb.excute(insertSql,eobj);
+                        }
+                    }else{
+                        area.append(tablename+" 主键为空也要的数据 新增\n");
+                        edb.excute(insertSql,eobj);               //主键为空的情况下无脑insert
+                    }
+
+
                 }
             }
             Object[][] piErr=new Object[errobjs.size()][9];
@@ -391,15 +421,15 @@ public class TimmerTrans {
             for(int j=0;j<updateobjs.size();j++){
                 piMidUp[j]=updateobjs.get(j);
             }
-            db.excuteBatch(errSql, piErr);
-            mdb.excuteBatch(medUpSql, piMidUp);
+            db.excuteBatch(errSql, piErr);              //记录上传日志
+            mdb.excuteBatch(medUpSql, piMidUp);          //更新上传标识
             db.commit();
             mdb.commit();
             area.append(tablename+"  上传提交*****************************************\n");
             list=mdb.find(sql);
         }
         }catch(Exception e){
-             e.printStackTrace();
+          e.printStackTrace();
           area.append("***************************异常："+e.getMessage()+"********************");
           log("异常："+e.getMessage());
             db.rollback();
@@ -410,6 +440,80 @@ public class TimmerTrans {
         }
     }
 
+    /**
+     * 上传错误数据程序
+     */
+    @Test
+    public void upErrorData(){
+        DBOperator mdb= null;
+        try {
+            mdb = new DBOperator("middledb");
+            String sql="select u.tableename,u.tablename,u.tableid from uploadtable u where u.tableename is not null    and u.isshow='Y'  order by u.no ";
+            List<Map> tableList=mdb.find(sql);
+            //获取所有要采集的表名
+            /**遍历所有表，逐一获取表结构*/
+            ExecutorService cachedThreadPool  = Executors.newCachedThreadPool();//创建线程池获取连接;
+            for(int i=0;i<tableList.size();i++){
+                try{
+                    final  Map tableListMap=tableList.get(i);
+                    cachedThreadPool.submit(new Runnable() {
+                        public void run() {
+                            area.append("-----------------------"+tableListMap.get("tablename").toString()+"------------------------\n");
+                            DBOperator edb=null   ;
+                            try{
+                                edb =new DBOperator("middledb") ;
+                                String tablename=tableListMap.get("tablename").toString();
+                                //加载字段信息
+                                String tableid=tableListMap.get("tableid").toString();
+                                String tableename=tableListMap.get("tableename").toString();
+                                String sql="select u.columname,u.columename,u.columlength,u.columtype,u.columisnull,u.dictnekey,u.columispk,u.rowdate from uploadtableinfo u where u.tableid=?";
+                                List<Map> tableInfoList=edb.find(sql,new Object[]{tableid});    //获取该表的字段信息
+                                String addSql="";
+                                String upStr="";
+                                /**遍历所有字段，获取字段信息*/
+                                for(int j=0;j<tableInfoList.size();j++){
+                                    Map colMap=tableInfoList.get(j);
+                                    String columename=((String)colMap.get("columename"));
+                                    addSql=addSql+columename+",";
+                                    upStr=upStr+columename+"=?,";
+                                }
+                                addSql=addSql+"uploaddate";
+                                String  ssql=" select "+addSql+" from "+tableename+" where uploadflag not in('0','1') and uploaderrflag is null   and jgdm is not null and createdate>sysdate-1   ";        //and jgdm not in('340000002148','340000002150','340000002176','485957459','340000002180','48599188-4','340000002184','340000002162','340000002158','340000002182')
+                                String   insertSql="insert into "+tableename+"@bz ("+addSql+") "+ssql ;
+                                String medUpSql="update "+tableename+" set uploaderrflag='ysc' where createdate>sysdate-1  ";
+                                edb.excute(insertSql) ;
+                                edb.excute(medUpSql);
+                                edb.commit();
+                                area.append(tableename+"  上传提交*****************************************\n");
+                            }catch(Exception e){
+                                e.printStackTrace();
+                                area.append("***************************异常："+e.getMessage()+"********************");
+                                log("异常："+e.getMessage());
+                                edb.rollback();
+                            } finally {
+                                edb.freeCon();
+                            }
+                        }
+                    } );
+                }  catch(Exception e2){
+                    log("异常信息:"+e2.getMessage());
+                }
+
+            }
+            cachedThreadPool.shutdown();
+            boolean loop=true;
+            do{
+                loop=!cachedThreadPool.awaitTermination(2, TimeUnit.SECONDS);  //等待线程任务完成
+            }while (loop);
+        } catch (Exception e) {
+            e.printStackTrace();
+            area.append("异常信息:"+e.getMessage());
+        }finally{
+            mdb.freeCon();
+        }
+        area.append("第二部分执行完了");
+
+    }
 	public void empiUpdate(){
 		DBOperator db= null;
 		try {

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/src" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/ETLTimerForEHR.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/TimmerTrans.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/cpinfo/his/web/etlMangager/TransDataTest.java" charset="GBK" />

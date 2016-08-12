@@ -19,13 +19,11 @@ import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * 采集数据的方法    从前置机到中间库的纯数据传输
+ * 采集数据的方法    从前置机到中间库的错误数据传输
  */
-public class TransMiddleData {
+public class TransErrorData {
 	public static final String sigleJGs="340000002148,340000002150,340000002176,485957459,340000002180,48599188-4,340000002184,340000002162,340000002158,340000002182";
 	public static JTextArea area;  //显示区
 	public static JTextField hourText;//时
@@ -106,11 +104,11 @@ public class TransMiddleData {
         System.out.println("第一步开始"+sdf.format(new Date()));
         area.append("\n开始第一部分"+sdf.format(new Date())+"\n");
         upflag=false;//进入上传状态
-        TransData();        //  提取基础数据
+//        upErrorData();        //  提取基础数据
 		area.append("上传完了");
         upflag=true;//将上传标识置回
 	}
-    public void TransData(){
+    public void upErrorData(){
 	 	DBOperator mdb= null;
 		int rownum=200;
 		try {
@@ -126,7 +124,27 @@ public class TransMiddleData {
                 cachedThreadPool.submit(new Runnable() {
                     public void run() {
                         area.append("-----------------------"+tableListMap.get("tablename").toString()+"------------------------\n");
-                            checkData(tableListMap, 356);  //去执行数据检查
+                        DBOperator edb=null   ;
+                        try{
+                            edb =new DBOperator("middledb") ;
+                            String tableename=tableListMap.get("tableename").toString();
+                            String  sql=" select * from "+tableename+" where uploadflag not in('0','1') and uploaderrflag is null   and jgdm is not null and createdate>sysdate-1   ";        //and jgdm not in('340000002148','340000002150','340000002176','485957459','340000002180','48599188-4','340000002184','340000002162','340000002158','340000002182')
+                            String   insertSql="insert into "+tableename+"@bz "+sql ;
+                            String medUpSql="update "+tableename+" set uploaderrflag=ysc";
+                            edb.excute(insertSql) ;
+                            edb.excute(medUpSql);
+                            edb.commit();
+                            area.append(tableename+"  上传提交*****************************************\n");
+                        }catch(Exception e){
+                            e.printStackTrace();
+                            area.append("***************************异常："+e.getMessage()+"********************");
+                            log("异常："+e.getMessage());
+                            edb.rollback();
+
+                        } finally {
+                            edb.freeCon();
+
+                        }
                          }
                     } );
                 }  catch(Exception e2){
@@ -155,81 +173,7 @@ public class TransMiddleData {
      * @throws Exception
      */
     private  void checkData(Map tableListMap,int rownum)  {
-        DBOperator db=null   ;
-        DBOperator mdb=null ;
-      try{
-          db =new DBOperator() ;
-          mdb= new DBOperator("middledb") ;
-        String tablename=tableListMap.get("tablename").toString();
-        String tableid=tableListMap.get("tableid").toString();
-        String tableename=tableListMap.get("tableename").toString();
-        String sql="select u.columname,u.columename,u.columlength,u.columtype,u.columisnull,u.dictnekey,u.columispk,u.rowdate from uploadtableinfo u where u.tableid=?";
-        List<Map> tableInfoList=mdb.find(sql,new Object[]{tableid});    //获取该表的字段信息
-        String addSql="";
-        String wenStr="";
-        String upStr="";
-        int pksize=0;
-        /**遍历所有字段，获取字段信息*/
-        for(int j=0;j<tableInfoList.size();j++){
-            Map colMap=tableInfoList.get(j);
-            String columename=((String)colMap.get("columename"));
-            addSql=addSql+columename+",";
-            wenStr=wenStr+"?,";
-            upStr=upStr+columename+"=?,";
-        }
-        addSql=addSql+"uploaddate";
-        wenStr=wenStr+"sysdate";
-        sql=" select * from "+tableename+" where uploadflag not in('0','1')  and jgdm is not null and createdate>sysdate-1   ";        //and jgdm not in('340000002148','340000002150','340000002176','485957459','340000002180','48599188-4','340000002184','340000002162','340000002158','340000002182')
-        String insertSql="insert into "+tableename+"("+addSql+") values("+wenStr+")";
-        insertSql="insert into "+tableename+"@bz "+sql ;
-        String medUpSql="update "+tableename+" set uploadflag=?,uploaddate=sysdate where dataid=?";
-     List<Map> list=mdb.find(sql);
-     area.append(tablename+"  共获取"+list.size()+"条记录\n");
-     log("-------------------------"+tablename+"  共获取"+list.size()+"条记录---------------------------");   //写入日志
-        while(list.size()>0){
-            List<Object[]> updateobjs=new ArrayList<Object[]>();
-            Set<Map>  errorMap=new HashSet<Map>();  //存放错误数据的集合
-            /**遍历查询到的记录，逐条进行分析*/
-            for(int j=0;j<list.size();j++){
-                Map tmap=list.get(j);             //获取一条记录
-                area.append((j+1)+":"+tablename+"  正在上传数据。。。"+tmap+"\n");
-                Object[] obj=new Object[tableInfoList.size()];        //存储insert所需参数值的数组
-                Object[] pkobj=new Object[pksize];        //存储主键值的数组
-                int k=0;int pkct=0;String isfalse="";
-                /**遍历该行每一列*/
-                for(k=0;k<tableInfoList.size();k++){
-                    Map colMap=tableInfoList.get(k);
-                    String columname=(String)colMap.get("columname");
-                    if(null!=columname)columname=columname.trim();
-                    String columename=(String)colMap.get("columename");
-                    if(null!=columename)columename=columename.trim();
-                        String uuid=new UUIDGenerator().generate().toString();
-                                updateobjs.add(new Object[]{uuid,tmap.get("dataid")});
-                            obj[k]=tmap.get(columename);
-                    }
-                        area.append(tablename+"  新增\n");
-                        db.excute(insertSql,obj);
-            }
-            Object[][] piMidUp=new Object[updateobjs.size()][2];
-            for(int j=0;j<updateobjs.size();j++){
-                piMidUp[j]=updateobjs.get(j);
-            }
-            mdb.excuteBatch(medUpSql, piMidUp);
-            db.commit();
-            mdb.commit();
-            area.append(tablename+"  上传提交*****************************************\n");
-            list=mdb.find(sql);
-        }
-        }catch(Exception e){
-             e.printStackTrace();
-          area.append("***************************异常："+e.getMessage()+"********************");
-          log("异常："+e.getMessage());
-            db.rollback();
-            mdb.rollback();
-        } finally {
-             db.freeCon();
-            mdb.freeCon();
-        }
+
     }
 
 	/**
@@ -265,7 +209,7 @@ public class TransMiddleData {
         }
          //日志
         String logFile = dbProps.getProperty("logfile", "DBConnectionManager.log");
-        logFile= date.get(Calendar.YEAR)+""+ (date.get(Calendar.MONTH)+1)+ date.get(Calendar.DATE)+logFile;
+        logFile= date.get(Calendar.YEAR)+"error"+ (date.get(Calendar.MONTH)+1)+ date.get(Calendar.DATE)+logFile;
         try {
             log = new PrintWriter(new FileWriter(logFile, true), true);
         }
@@ -310,7 +254,7 @@ public class TransMiddleData {
 
 	public static void main(String[] args) {
 		try {
-			area=new TransMiddleData().getTextArea();
+			area=new TransErrorData().getTextArea();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
