@@ -107,8 +107,8 @@ public class TimmerTrans {
         area.append("\n开始第一部分"+sdf.format(new Date())+"\n");
         upflag=false;//进入上传状态
         TransData();        //  提取基础数据
-        System.out.println("上传错误数据信息开始"+sdf.format(new Date()));
-        upErrorData();
+//      System.out.println("上传错误数据信息开始"+sdf.format(new Date()));
+//      upErrorData();
 //		System.out.println("personDataBegin"+sdf.format(new Date()));
 //		area.append("第二部分"+sdf.format(new Date())+"\n");
 //		personData();
@@ -408,8 +408,6 @@ public class TimmerTrans {
                         area.append(tablename+" 主键为空也要的数据 新增\n");
                         edb.excute(insertSql,eobj);               //主键为空的情况下无脑insert
                     }
-
-
                 }
             }
             Object[][] piErr=new Object[errobjs.size()][9];
@@ -425,6 +423,7 @@ public class TimmerTrans {
             mdb.excuteBatch(medUpSql, piMidUp);          //更新上传标识
             db.commit();
             mdb.commit();
+            edb.commit();
             area.append(tablename+"  上传提交*****************************************\n");
             list=mdb.find(sql);
         }
@@ -434,16 +433,18 @@ public class TimmerTrans {
           log("异常："+e.getMessage());
             db.rollback();
             mdb.rollback();
+          edb.rollback();
         } finally {
              db.freeCon();
             mdb.freeCon();
+          edb.freeCon();
         }
     }
 
     /**
      * 上传错误数据程序
      */
-    @Test
+
     public void upErrorData(){
         DBOperator mdb= null;
         try {
